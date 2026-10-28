@@ -6,4 +6,5 @@
 (defn get-user [input]
   (-> input
       validation/validate-user-id
+      (get-in [:id])
       repo/fetch-user))
