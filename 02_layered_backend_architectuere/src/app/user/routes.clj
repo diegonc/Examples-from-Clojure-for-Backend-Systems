@@ -1,5 +1,6 @@
 (ns app.user.routes
-  (:require [compojure.core :refer [GET defroutes]]
+  (:require [clojure.data.json :as json]
+            [compojure.core :refer [GET defroutes]]
             [compojure.route :as route]
             [app.user.controller :as controller]))
 
@@ -9,6 +10,6 @@
     {:status 200
      :body "User service"})
   (GET "/users/:id" request
-    (controller/get-user-controller request))
+    (json/write-str (controller/get-user-controller request)))
   (route/not-found {:status 404
                     :body "Not found"}))
