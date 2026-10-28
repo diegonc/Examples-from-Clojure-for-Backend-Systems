@@ -7,4 +7,6 @@
         result (service/get-user {:id id})]
     {:status 200
      :headers {"Content-Type" "application/json"}
-     :body result}))
+     :body {:status "success"
+            :data result
+            :error nil}}))
