@@ -8,6 +8,8 @@
   (GET "/" []
     {:status 200
      :body "User service"})
+  (GET "/users/fail" _
+    (throw (Exception. "This endpoint must fail")))
   (GET "/users/:id" request
     (controller/get-user-controller request))
   (route/not-found {:status 404
