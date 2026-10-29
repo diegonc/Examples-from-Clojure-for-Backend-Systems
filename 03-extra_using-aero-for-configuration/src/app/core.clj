@@ -20,7 +20,8 @@
 (defn -main []
   (let [env (or (System/getenv "APP_ENV") "dev")
         config (aero/read-config (io/resource "config.edn")
-                                 {:profile (keyword env)})
-        handler (api-handler (:app config))]
+                                 {:profile (keyword env)
+                                  :resolver aero/root-resolver})
+        handler (api-handler (:app  config))]
     (setup-datasource (get-in config [:app :db-spec]))
     (run-jetty handler {:port (-> config :server :port) :join? false})))

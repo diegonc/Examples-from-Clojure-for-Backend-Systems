@@ -1,16 +1,6 @@
-{:server {:port #or [#env PORT 3000]}
+{:secrets #include #join [#or [#env APP_ENV "dev"] ".secrets.edn"]
+ :server {:port #or [#env PORT 3000]}
  :app {:dev-mode? #profile {:dev true
                             :prod false
                             :test false}
-       :db-spec #profile {:dev {:dbtype "postgresql"
-                                :host "localhost"
-                                :port 5432
-                                :dbname "app"
-                                :user "app"
-                                :password "app"}
-                          :prod {:dbtype "postgresql"
-                                 :host "localhost"
-                                 :port 5432
-                                 :dbname "app"
-                                 :user "app"
-                                 :password #env PG_PASSWORD}}}}
+       :db-spec #ref [:secrets :db-spec]}}

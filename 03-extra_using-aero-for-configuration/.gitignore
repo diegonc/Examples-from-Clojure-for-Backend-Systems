@@ -4,3 +4,5 @@
 .lsp
 .nrepl-port
 target
+*.secrets.edn
+!dev.secrets.edn
