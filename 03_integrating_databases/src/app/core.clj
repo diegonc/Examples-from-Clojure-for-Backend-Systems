@@ -1,4 +1,5 @@
 (ns app.core
+  (:gen-class)
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [app.cross-cutting.error-handling :refer [error-handler-middleware]]
