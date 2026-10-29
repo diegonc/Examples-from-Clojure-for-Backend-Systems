@@ -30,4 +30,6 @@
         java.util.TimeZone/getTimeZone
         java.util.TimeZone/setDefault)
     (setup-datasource (get-in config [:app :db-spec]))
-    (run-jetty handler {:port (-> config :server :port) :join? false})))
+    (run-jetty handler
+               {:port (get-in config [:server :port])
+                :join? false})))
