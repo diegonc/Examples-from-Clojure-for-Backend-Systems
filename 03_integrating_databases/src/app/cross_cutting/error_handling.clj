@@ -1,4 +1,5 @@
-(ns app.cross-cutting.error-handling)
+(ns app.cross-cutting.error-handling
+  (:require [app.config :refer [environment]]))
 
 (defn error-response [message]
   {:status "error"
@@ -12,5 +13,7 @@
     (try
       (handler request)
       (catch Exception e
-        {:status 500
-         :body (error-response (.getMessage e))}))))
+        (if (= environment "production")
+          {:status 500
+           :body (error-response (.getMessage e))}
+          (throw e))))))

@@ -8,3 +8,6 @@
    :dbname "app"
    :user "app"
    :password "app"})
+
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
+(def environment "development")
