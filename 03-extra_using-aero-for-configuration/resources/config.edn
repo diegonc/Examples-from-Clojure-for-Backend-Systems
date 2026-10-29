@@ -3,4 +3,5 @@
  :app {:dev-mode? #profile {:dev true
                             :prod false
                             :test false}
-       :db-spec #ref [:secrets :db-spec]}}
+       :db-spec #ref [:secrets :db-spec]
+       :tz "America/Argentina/Buenos_Aires"}}

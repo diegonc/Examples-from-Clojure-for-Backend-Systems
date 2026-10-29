@@ -23,5 +23,11 @@
                                  {:profile (keyword env)
                                   :resolver aero/root-resolver})
         handler (api-handler (:app  config))]
+    ;; Set timezone of the JVM to workaround PostgreSQL connection issues
+    (-> config
+        (get-in [:app :tz])
+        (or "UTC")
+        java.util.TimeZone/getTimeZone
+        java.util.TimeZone/setDefault)
     (setup-datasource (get-in config [:app :db-spec]))
     (run-jetty handler {:port (-> config :server :port) :join? false})))
