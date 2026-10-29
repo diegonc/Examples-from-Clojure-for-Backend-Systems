@@ -1,5 +1,4 @@
-(ns app.cross-cutting.error-handling
-  (:require [app.config :refer [environment]]))
+(ns app.cross-cutting.error-handling)
 
 (defn error-response [message]
   {:status "error"
@@ -8,12 +7,12 @@
 
 
 #_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
-(defn error-handler-middleware [handler]
+(defn error-handler-middleware [handler opts]
   (fn [request]
     (try
       (handler request)
       (catch Exception e
-        (if (= environment "production")
+        (if (not (:dev-mode? opts))
           {:status 500
            :body (error-response (.getMessage e))}
           (throw e))))))
