@@ -10,3 +10,13 @@
      :body {:status "success"
             :data result
             :error nil}}))
+
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
+(defn create-user-controller [request]
+  (let [name (-> request :body :name)
+        result (service/create-user {:name name})]
+    {:status 200
+     :headers {"Content-Type" "application/json"}
+     :body {:status "success"
+            :data result
+            :error nil}}))
