@@ -7,12 +7,12 @@
 
 
 #_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
-(defn error-handler-middleware [handler opts]
+(defn error-handler-middleware [handler dev-mode?]
   (fn [request]
     (try
       (handler request)
       (catch Exception e
-        (if (not (:dev-mode? opts))
+        (if (not dev-mode?)
           {:status 500
            :body (error-response (.getMessage e))}
           (throw e))))))
