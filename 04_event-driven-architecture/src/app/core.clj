@@ -21,7 +21,7 @@
       (poll-events))
     n))
 
-(defn -main []
+(defn- run-kafka []
   (setup-producer)
   (setup-consumer)
 
@@ -33,3 +33,11 @@
 
     (shutdown-consumer)
     (shutdown-producer)))
+
+(defn- run-rabbitmq []
+  (println "TODO"))
+
+(defn -main [& args]
+  (if (= (first args) "kafka")
+    (run-kafka)
+    (run-rabbitmq)))
