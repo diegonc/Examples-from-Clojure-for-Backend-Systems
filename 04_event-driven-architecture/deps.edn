@@ -1,0 +1,2 @@
+{:deps {org.apache.kafka/kafka-clients {:mvn/version "4.4.0"}
+        org.clojure/data.json {:mvn/version "2.5.2"}}}
