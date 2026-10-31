@@ -6,6 +6,6 @@
         compojure/compojure {:mvn/version "1.7.0"}
         com.github.seancorfield/next.jdbc {:mvn/version "1.4.72"}
         org.postgresql/postgresql {:mvn/version "42.7.14"}}
- :aliases {:build {:paths ["scripts"]
-                   :deps {io.github.clojure/tools.build {:mvn/version "0.10.14"}}
-                   :ns-default build}}}
+ :aliases {:scripts {:paths ["scripts"]
+                     :deps {io.github.clojure/tools.build {:mvn/version "0.10.14"}}
+                     :ns-default build}}}
